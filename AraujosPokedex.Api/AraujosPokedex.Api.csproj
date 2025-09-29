@@ -5,22 +5,18 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>c3c8bb4a-e23b-48bd-bfc6-768271248457</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="12.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8"/>
-        <PackageReference Include="Scalar.AspNetCore" Version="2.8.5"/>
+        <PackageReference Include="FluentValidation" Version="12.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.8.5" />
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="..\.dockerignore">
-            <Link>.dockerignore</Link>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\AraujosPokedex.Database\AraujosPokedex.Database.csproj"/>
+        <ProjectReference Include="..\AraujosPokedex.Database\AraujosPokedex.Database.csproj" />
     </ItemGroup>
 
 </Project>
