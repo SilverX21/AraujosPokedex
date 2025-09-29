@@ -4,7 +4,7 @@ namespace AraujosPokedex.Api.Extensions;
 
 public static class ApplicationServicesExtensions
 {
-    public static IApplicationBuilder MapApplicationExtensions(this WebApplication app)
+    public static WebApplication MapApplicationExtensions(this WebApplication app)
     {
         app.MapOpenApiSettings();
         app.MapScalarSettings();
@@ -13,14 +13,14 @@ public static class ApplicationServicesExtensions
         return app;
     }
 
-    public static IApplicationBuilder MapOpenApiSettings(this WebApplication app)
+    public static WebApplication MapOpenApiSettings(this WebApplication app)
     {
         if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
         return app;
     }
 
-    public static IApplicationBuilder MapScalarSettings(this WebApplication app)
+    public static WebApplication MapScalarSettings(this WebApplication app)
     {
         app.MapScalarApiReference(options =>
         {

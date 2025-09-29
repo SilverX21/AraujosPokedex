@@ -1,4 +1,7 @@
+using AraujosPokedex.Database.Data;
 using AraujosPokedex.Domain.Models.Base;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace AraujosPokedex.Api.Extensions;
 
@@ -28,6 +31,18 @@ public static class AraujosPokedexExtensions
     {
         services.AddOpenApi();
         services.AddEndpointsApiExplorer();
+
+        return services;
+    }
+
+    public static IServiceCollection AddCustomDatabase(this IServiceCollection services)
+    {
+        services.AddDbContext<ApplicationDbContext>((sp, options) =>
+        {
+            var appOptions = sp.GetRequiredService<IOptions<AraujosPokedexOptions>>().Value;
+
+            options.UseNpgsql(appOptions.ConnectionStrings.PostgreSqlConnection);
+        });
 
         return services;
     }
