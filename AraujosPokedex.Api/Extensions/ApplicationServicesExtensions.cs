@@ -1,3 +1,4 @@
+using AraujosPokedex.Api.Endpoints.Pokemon;
 using Scalar.AspNetCore;
 
 namespace AraujosPokedex.Api.Extensions;
@@ -9,6 +10,7 @@ public static class ApplicationServicesExtensions
         app.MapOpenApiSettings();
         app.MapScalarSettings();
         app.UseHttpsRedirection();
+        app.MapPokemonEndpoints();
 
         return app;
     }

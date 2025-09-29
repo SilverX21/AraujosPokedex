@@ -1,5 +1,6 @@
 using AraujosPokedex.Database.Data;
 using AraujosPokedex.Domain.Models.Base;
+using AraujosPokedex.Domain.Services.Pokemon;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -12,6 +13,9 @@ public static class AraujosPokedexExtensions
     {
         services.AddApplicationOptions(configuration);
         services.AddApiSettings();
+        services.AddCustomDatabase();
+        services.AddCustomDependencyInjection();
+        services.AddCustomHttpClient();
 
         return services;
     }
@@ -42,6 +46,25 @@ public static class AraujosPokedexExtensions
             var appOptions = sp.GetRequiredService<IOptions<AraujosPokedexOptions>>().Value;
 
             options.UseNpgsql(appOptions.ConnectionStrings.PostgreSqlConnection);
+        });
+
+        return services;
+    }
+
+    public static IServiceCollection AddCustomDependencyInjection(this IServiceCollection services)
+    {
+        services.AddSingleton<IPokemonService, PokemonService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddCustomHttpClient(this IServiceCollection services)
+    {
+        services.AddHttpClient<IPokemonService, PokemonService>((serviceProvider, options) =>
+        {
+            var settings = serviceProvider.GetRequiredService<IOptions<AraujosPokedexOptions>>().Value;
+
+            options.BaseAddress = new Uri(settings.PokeApiSettings.BaseUrl);
         });
 
         return services;
