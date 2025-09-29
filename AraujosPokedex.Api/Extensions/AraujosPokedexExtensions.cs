@@ -45,7 +45,7 @@ public static class AraujosPokedexExtensions
         {
             var appOptions = sp.GetRequiredService<IOptions<AraujosPokedexOptions>>().Value;
 
-            options.UseNpgsql(appOptions.ConnectionStrings.PostgreSqlConnection);
+            options.UseNpgsql(appOptions.ConnectionStrings.PostgreSqlConnection, x => x.MigrationsAssembly("AraujosPokedex.Database"));
         });
 
         return services;
