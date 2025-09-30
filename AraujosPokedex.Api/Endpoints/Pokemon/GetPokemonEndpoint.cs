@@ -25,7 +25,6 @@ public static class GetPokemonEndpoint
             return Results.Ok(response);
         })
             .WithName(Name)
-            .WithSummary("Get's a given pokemon details by it's name or pokedex entry Id")
             .Produces(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status400BadRequest)
             .WithOpenApi();

@@ -1,6 +1,8 @@
 using AraujosPokedex.Database.Data;
+using AraujosPokedex.Domain;
 using AraujosPokedex.Domain.Models.Base;
 using AraujosPokedex.Domain.Services.Pokemon;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -16,6 +18,7 @@ public static class AraujosPokedexExtensions
         services.AddCustomDatabase();
         services.AddCustomDependencyInjection();
         services.AddCustomHttpClient();
+        services.AddCustomFluentValidators();
 
         return services;
     }
@@ -66,6 +69,13 @@ public static class AraujosPokedexExtensions
 
             options.BaseAddress = new Uri(settings.PokeApiSettings.BaseUrl);
         });
+
+        return services;
+    }
+
+    public static IServiceCollection AddCustomFluentValidators(this IServiceCollection services)
+    {
+        services.AddValidatorsFromAssemblyContaining<IApplicationMarker>(ServiceLifetime.Singleton);
 
         return services;
     }

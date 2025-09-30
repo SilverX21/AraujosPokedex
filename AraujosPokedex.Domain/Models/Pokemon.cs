@@ -12,7 +12,7 @@ public sealed class Pokemon
     public string Name { get; set; }
 
     [StringLength(30)]
-    public string Nickname { get; set; }
+    public string? Nickname { get; set; }
 
     [Required]
     [StringLength(20)]
@@ -21,9 +21,9 @@ public sealed class Pokemon
     [Required]
     public string PrimaryType { get; set; }
 
-    public string SecondaryType { get; set; }
+    public string? SecondaryType { get; set; }
 
     public bool IsOwned { get; set; }
 
-    public DateTime DateCaught { get; set; }
+    public DateTime? DateCaught { get; set; }
 }
